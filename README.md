@@ -71,6 +71,80 @@ Ce script exporte les bases de données locales en fichiers `.sql`, les compress
 - Outils : `bash`, `tar`, `sha256sum`, `scp`
 
 ---
+# import-db.sh — Script d'importation SQL Docker
+
+Script bash pour importer automatiquement un fichier `.sql`, `.sql.gz`, `.zip` ou `.tar.gz` dans une base MariaDB/MySQL dans Docker.
+
+## Usage rapide
+```bash
+./import-db.sh [--verbose] [--dry-run]
+```
+
+## Fonctionnalités
+- Chargement auto des variables depuis `.env`
+- Création interactive du `.env` si absent
+- Support des formats compressés (`.gz`, `.zip`, `.tar.gz`)
+- Création auto de la base si absente
+- Import via `source` dans le conteneur Docker
+
+## Variables nécessaires
+Dans `.env` ou demandées :
+```
+DB_HOST=db
+DB_DATABASE=ma_base
+DB_USERNAME=root
+DB_PASSWORD=secret
+DB_INIT_SQL_FILE=dump.sql.gz
+```
+
+## Exemples
+```bash
+./import-db.sh                     # Exécution normale
+./import-db.sh --verbose          # Affiche les étapes
+./import-db.sh --dry-run          # Simule l'import
+```
+
+## Licence
+MIT
+
+
+
+# 🐳 export-db.sh — Version synthétique
+
+Script Bash pour exporter une base MariaDB/MySQL depuis un conteneur Docker.
+
+## ⚙️ Commande
+```bash
+./export-db.sh [--verbose] [--dry-run] [--compress]
+```
+
+## 🔧 Prérequis `.env`
+```env
+DB_HOST=mariadb
+DB_DATABASE=ma_base
+DB_USERNAME=root
+DB_PASSWORD=secret
+```
+
+## 🚀 Options
+| Option       | Effet                                          |
+|--------------|------------------------------------------------|
+| `--verbose`  | Affiche les étapes détaillées                  |
+| `--dry-run`  | Affiche la commande sans l'exécuter            |
+| `--compress` | Génère un fichier `.sql.gz` au lieu de `.sql` |
+
+## 📄 Exemple de fichier généré
+```bash
+ma_base_20250325_174201.sql.gz
+```
+
+## 🔐 Remarque
+⚠️ Mot de passe transmis en clair. Usage local uniquement.
+
+## 📝 Licence
+MIT
+
+
 
 Pour toute amélioration ou signalement d'anomalie, ouvrez une issue ou une pull request.
 
