@@ -95,7 +95,8 @@ Le script vérifie si le dossier distant est accessible en écriture. Si ce n’
 
 ---
 
-## 📜 Fichier `migration.log`
+## 📜 Fichier `migration.log`fs
+
 
 Toutes les actions importantes sont enregistrées avec horodatage :
 
